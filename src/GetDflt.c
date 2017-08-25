@@ -105,9 +105,17 @@ GetHomeDir(
 	dest[len-1] = '\0';
     } else {
 	if ((ptr = getenv("USER")))
+#ifdef ANDROID
+	    pw = getpwnam(ptr);
+#else
 	    pw = _XGetpwnam(ptr,pwparams);
+#endif
 	else
+#ifdef ANDROID
+	    pw = getpwuid(getuid());
+#else
 	    pw = _XGetpwuid(getuid(),pwparams);
+#endif
 	if (pw != NULL) {
 	    (void) strncpy(dest, pw->pw_dir, len-1);
 	    dest[len-1] = '\0';
