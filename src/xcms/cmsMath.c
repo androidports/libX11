@@ -40,6 +40,10 @@ in this Software without prior written authorization from The Open Group.
 #define DBL_EPSILON 1e-6
 #endif
 
+#ifdef DEBUG
+#include <stdio.h>
+#endif
+
 #ifdef _X_ROOT_STATS
 int cbrt_loopcount;
 int sqrt_loopcount;

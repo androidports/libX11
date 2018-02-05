@@ -237,7 +237,7 @@ xlocaledir(
 	 * Only use the user-supplied path if the process isn't priviledged.
 	 */
 	if (getuid() == geteuid() && getgid() == getegid()) {
-#if defined(HASSETUGID)
+#if defined(HASSETUGID) && !defined(__ANDROID__)
 	    priv = issetugid();
 #elif defined(HASGETRESUID)
 	    {
@@ -315,7 +315,7 @@ xlocalelibdir(
 	 * Only use the user-supplied path if the process isn't priviledged.
 	 */
 	if (getuid() == geteuid() && getgid() == getegid()) {
-#if defined(HASSETUGID)
+#if defined(HASSETUGID) && !defined(__ANDROID__)
 	    priv = issetugid();
 #elif defined(HASGETRESUID)
 	    {

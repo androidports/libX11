@@ -257,6 +257,11 @@ _XOpenLC(
 
     if (name == NULL) {
 	name = setlocale (LC_CTYPE, (char *)NULL);
+#ifdef ANDROID
+	if (name == NULL) {
+            return NULL;
+	}
+#endif
 #if !defined(X_LOCALE)
         /*
          * _XlMapOSLocaleName will return the same string or a substring
